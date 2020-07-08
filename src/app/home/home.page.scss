@@ -1,0 +1,103 @@
+.welcome-card ion-img {
+  max-height: 35vh;
+  overflow: hidden;
+}
+
+// /* Transparent standard */
+// ion-toolbar {
+//   --background: transparent;
+//   --ion-color-base: transparent !important;
+// }
+
+:host {
+  ion-toolbar {
+    --padding-top: 0;
+  }
+}
+
+ion-content {
+  --background: linear-gradient(#0073d6, #84dffd, #00c0ff);
+}
+
+.menu-icons {
+  background: var(--ion-color-primary-shade); 
+  height: 13vw; 
+  width: 13vw; 
+  border-width: 1px; 
+  border-color: var(--ion-color-primary)
+}
+
+.scrolling-wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .card {
+    padding: 8px;
+    flex: 0 0 auto;
+  }
+}
+
+.transaction-card {
+  width: 65vw;
+  --border-top-width: 2px;
+  --border-end-width: 2px;
+  --border-bottom-width: 2px;
+  --border-start-width: 2px;
+  --border-radius: 8px;
+  
+  --inner-border-width: 0;
+  --border-width: var(--border-top-width) var(--border-end-width) var(--border-bottom-width) var(--border-start-width);
+  --border-color: var(--ion-color-grey);
+  .inner {
+    min-width: 100%;
+    max-width: 100%;
+    padding: 8px 0 8px 0;
+    display: flex; 
+    align-self:flex-start;
+  }
+  .forward-icon {
+    font-size: 1.5em;
+    top: 5%; 
+    position: relative
+  }
+}
+
+.beneficiary-forward-icon {
+  top: 42%;
+  color: var(--ion-color-grey);
+  position: relative
+}
+
+.name-item {
+  --padding-start: 0px;
+  min-width: 100%; 
+  max-width: 100%;
+  --inner-padding-end: 0px;
+}
+
+.beneficiary-card {
+  width: 100%;
+  padding: 0 8px 8px 8px;
+  --border-top-width: 2px;
+  --border-end-width: 2px;
+  --border-bottom-width: 2px;
+  --border-start-width: 2px;
+  --border-radius: 5px;
+  
+  --inner-border-width: 0;
+  --inner-padding-end: 0px;
+  --border-width: var(--border-top-width) var(--border-end-width) var(--border-bottom-width) var(--border-start-width);
+  --border-color: var(--ion-beneficiary-border-color);
+  --background: var(--ion-beneficiary-background-color);
+  .inner {
+    --background: var(--ion-beneficiary-background-color);
+  }
+}
+
+.help-number {
+  color: var(--ion-color-primary-shade);
+}

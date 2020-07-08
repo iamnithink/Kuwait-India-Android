@@ -1,0 +1,223 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="" color="light"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen #content>
+  <div class="container">
+    <div class="header" style="height: 25vh; max-height: 25vh;">
+      <h1 class="big-title" style="color: white">{{ headerTitle }}</h1>
+      <h5 style="color: white">{{ headerSubtitle }}</h5>
+    </div>
+    <div class="content" style="padding: 24px 16px 26px 16px">
+      <mat-horizontal-stepper [linear]="true" #stepper (selectionChange)="setHeaderText($event)">
+
+        <mat-step [completed]="signupFormOne.valid && isOtpVerified">
+          <form [formGroup]="signupFormOne">
+            <ion-item style="--padding-start: 0px">
+              <ion-label position="floating">Civil ID</ion-label>
+              <ion-input formControlName="civilId"></ion-input>
+            </ion-item>
+            <!-- <ion-grid no-padding>
+              <ion-row no-padding>
+                <ion-col size="3" no-padding>
+                  <ion-item style="--padding-start: 0px">
+                    <ion-label position="floating">Prefix</ion-label>
+                    <ion-input></ion-input>
+                  </ion-item>
+                </ion-col>
+                <ion-col size="9" no-padding style="padding-left: 16px">
+                  <ion-item style="--padding-start: 0px">
+                    <ion-label position="floating">First Name</ion-label>
+                    <ion-input></ion-input>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-grid> -->
+            <ion-item style="--padding-start: 0px">
+              <ion-label position="floating">Date of Expiry</ion-label>
+              <ion-datetime displayFormat="MMM DD, YYYY" [min]="minDate" [max]="maxDate" formControlName="expiryDate">
+              </ion-datetime>
+            </ion-item>
+            <ion-item style="--padding-start: 0px">
+              <ion-label position="floating">Name as per Civil ID</ion-label>
+              <ion-input formControlName="name" (ionBlur)="capitalizeName()"></ion-input>
+            </ion-item>
+            <mat-form-field style="min-width: 100%">
+              <mat-select formControlName="nationality" name="nationality" placeholder="Select Nationality">
+                <mat-option *ngFor="let nationality of nationalityList" [value]="nationality">
+                  {{nationality.Name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <ion-item style="--padding-start: 0px">
+              <ion-label position="floating">Email ID</ion-label>
+              <ion-input formControlName="email" required></ion-input>
+            </ion-item>
+            <ion-item style="--padding-start: 0px">
+              <ion-label position="floating">Mobile Number</ion-label>
+              <ion-input formControlName="phone" required placeholder="+965"></ion-input>
+            </ion-item>
+          </form>
+        </mat-step>
+
+        <mat-step [stepControl]="signupFormTwo">
+          <form [formGroup]="signupFormTwo">
+            <mat-form-field style="min-width: 100%">
+              <mat-select formControlName="firstQuestion" name="firstQuestion" (selectionChange)="selectionChange(1)"
+                [(ngModel)]="firstQuestionSelected" placeholder="Question 1">
+                <mat-option *ngFor="let question of allQuestions1" [value]="question">
+                  {{question.SecretQuestion}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <ion-input class="answer-container" no-padding type="text" placeholder="Answer"
+              formControlName="firstAnswer">
+            </ion-input>
+            <mat-form-field style="min-width: 100%">
+              <mat-select formControlName="secondQuestion" name="secondQuestion" (selectionChange)="selectionChange(2)"
+                placeholder="Question 2">
+                <mat-option *ngFor="let question of allQuestions2" [value]="question">
+                  {{question.SecretQuestion}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <ion-input no-padding class="answer-container" type="text" placeholder="Answer"
+              formControlName="secondAnswer"></ion-input>
+            <mat-form-field style="min-width: 100%">
+              <mat-select formControlName="thirdQuestion" name="thirdQuestion" (selectionChange)="selectionChange(3)"
+                placeholder="Question 3">
+                <mat-option *ngFor="let question of allQuestions3" [value]="question">
+                  {{question.SecretQuestion}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <ion-input no-padding class="answer-container" type="text" placeholder="Answer"
+              formControlName="thirdAnswer">
+            </ion-input>
+            <mat-form-field style="min-width: 100%">
+              <mat-select formControlName="fourthQuestion" name="fourthQuestion" (selectionChange)="selectionChange(4)"
+                placeholder="Question 4">
+                <mat-option *ngFor="let question of allQuestions4" [value]="question">
+                  {{question.SecretQuestion}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <ion-input no-padding class="answer-container" type="text" placeholder="Answer"
+              formControlName="fourthAnswer"></ion-input>
+            <mat-form-field style="min-width: 100%">
+              <mat-select formControlName="fifthQuestion" name="fifthQuestion" (selectionChange)="selectionChange(5)"
+                placeholder="Question 5">
+                <mat-option *ngFor="let question of allQuestions5" [value]="question">
+                  {{question.SecretQuestion}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <ion-input no-padding class="answer-container" type="text" placeholder="Answer"
+              formControlName="fifthAnswer">
+            </ion-input>
+          </form>
+        </mat-step>
+
+        <mat-step>
+          <ion-grid no-padding>
+            <!-- <div style="margin-bottom: 12px">Select any one image</div> -->
+            <ion-row>
+              <ion-col size="4" *ngFor="let image of securityImages" class="image-container"
+                [class.selected]="image.isSelected" (click)="didSelectImage(image)">
+                <!-- <div >
+                  <img class='image' [src]="image.download_url" />
+                </div> -->
+
+                <ion-button class="btn" [fill]="image.isSelected ? 'outline' : 'clear'">
+                  <img [src]="image.Filename" />
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </mat-step>
+
+        <mat-step [stepControl]="signupFormThree">
+          <!-- <ion-item lines="none">
+            <ion-label position="stacked">Select a Security Phrase</ion-label>
+            <ion-select interface="alert" placeholder="Security Phrase">
+              <ion-select-option *ngFor="let phrase of securityPhrases" [value]="phrase.ID">{{phrase.Phrase}}
+              </ion-select-option>
+            </ion-select>
+          </ion-item> -->
+          <form [formGroup]="signupFormThree">
+            <mat-form-field style="min-width: 100%">
+              <mat-select formControlName="secPhrase" name="secPhrase" placeholder="Select Security Phrase">
+                <mat-option *ngFor="let phrase of securityPhrases" [value]="phrase.ID">
+                  {{phrase.Phrase}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </form>
+        </mat-step>
+
+        <mat-step>
+          <form [formGroup]="signupFormFour">
+            <ion-item style="--padding-start: 0px">
+              <ion-label position="floating">Username</ion-label>
+              <ion-input formControlName="username4" required autocapitalize="on" (ionBlur)="capitalize()">
+              </ion-input>
+            </ion-item>
+            <ion-grid no-padding>
+              <ion-row no-padding>
+                <ion-col size="10" no-padding>
+                  <ion-item style="--padding-start: 0px">
+                    <ion-label position="floating">Password</ion-label>
+                    <ion-input formControlName="password" required [type]="passwordType"></ion-input>
+                  </ion-item>
+                </ion-col>
+                <ion-col size="2" no-padding style="padding-top: 15px">
+                  <ion-button fill="clear" (click)="didClickPasswordChange(1)">
+                    <ion-icon *ngIf="passwordType === 'password'" slot="icon-only" name="eye"></ion-icon>
+                    <ion-icon *ngIf="passwordType === 'text'" slot="icon-only" name="eye-off"></ion-icon>
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="10" no-padding>
+                  <ion-item style="--padding-start: 0px">
+                    <ion-label position="floating">Confirm Password</ion-label>
+                    <ion-input formControlName="confirmPassword" required [type]="confirmPasswordType"></ion-input>
+                  </ion-item>
+                </ion-col>
+                <ion-col size="2" no-padding style="padding-top: 15px">
+                  <ion-button fill="clear" (click)="didClickPasswordChange(2)">
+                    <ion-icon *ngIf="confirmPasswordType === 'password'" slot="icon-only" name="eye"></ion-icon>
+                    <ion-icon *ngIf="confirmPasswordType === 'text'" slot="icon-only" name="eye-off"></ion-icon>
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </form>
+        </mat-step>
+      </mat-horizontal-stepper>
+
+      <ion-grid style="padding: 8px 24px 24px 24px">
+        <ion-row no-padding>
+          <ion-col size="3" no-padding>
+            <ion-button matStepperPrevious (click)="previousStep(stepper)" *ngIf="!(stepper.selectedIndex === 0)">
+              Back
+            </ion-button>
+          </ion-col>
+          <ion-col size="3" offset="6" no-padding>
+            <ion-button style="float:right" matStepperNext class="ion-align-self-end" (click)="nextStep(stepper)">
+              {{
+                stepper.selectedIndex === stepper.steps.length - 1
+                  ? "Finish"
+                  : " Next "
+              }}
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,86 @@
+<ion-header no-border>
+  <ion-toolbar [class.show-background]="showToolbar" style="padding: 8px 0 8px 0">
+    <ion-buttons slot="start">
+      <ion-back-button text="" [color]="currentColor"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <!-- <ion-button>
+        <ion-icon [color]="currentColor" slot="icon-only" name="add"></ion-icon>
+      </ion-button> -->
+      <!-- <ion-menu-toggle>
+        <ion-button>
+          <ion-icon [color]="currentColor" src="../../assets/menu.svg"></ion-icon>
+        </ion-button>
+      </ion-menu-toggle> -->
+      <!-- <ion-menu-button [color]="currentColor"></ion-menu-button> -->
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen (ionScroll)="onScroll($event)" [scrollEvents]="true">
+  <div class="container">
+    <div class="new-header">
+    </div>
+    <div class="content" style="padding: 32px 16px 16px 16px">
+      <div text-center style="margin-top: -14vh">
+        <div class="new-avatar" [ngStyle]="{'background': transaction.BenefColor}">
+          {{transaction.BeneficiaryName | slice:0:1}}
+        </div>
+      </div>
+      <ion-text text-center class="title-color">
+        <h2>{{transaction.BeneficiaryName}}</h2>
+      </ion-text>
+      <div text-center class="title-color" style="font-size: small; padding-bottom: 12px">
+        Reference ID - {{transaction.TransactionNo}}
+      </div>
+
+      <app-transaction isDetails=true [firstAmount]="transaction.TotalKD" firstUnit="KWD"
+        [secondAmount]="transaction.AmountFC" [secondUnit]="transaction.Currency">
+      </app-transaction>
+
+      <ion-grid no-padding>
+        <ion-row no-padding>
+          <ion-col size="12" no-padding>
+            <div text-center>
+              <ion-chip color="success" *ngIf="transaction.Status === 'COMPLETED'">{{transaction.Status}}</ion-chip>
+              <ion-chip color="warning" *ngIf="transaction.Status !== 'COMPLETED'">{{transaction.Status}}</ion-chip>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <section class="main-timeline-section">
+        <div class="conference-center-line"></div>
+        <div class="conference-timeline-content">
+
+          <div class="timeline-article content-right-container">
+
+            <div class="meta-date"></div>
+            <div class="content-box">
+              <div class="title-color">Initiated Transaction</div>
+            </div>
+          </div>
+
+          <div class="timeline-article content-right-container">
+
+            <div class="meta-date"></div>
+            <div class="content-box">
+              <div class="title-color" *ngIf="transaction.Status === 'COMPLETED'">Completed Successfully
+              </div>
+              <div class="title-color" *ngIf="transaction.Status !== 'COMPLETED'">{{transaction.Status}}
+              </div>
+              <!-- <div class="subtitle-color">Time and date</div> -->
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+</ion-content>
+
+<ion-footer style="background: var(--ion-color-primary)">
+  <ion-button expand="full" style="--box-shadow: 0" (click)="startNew()">
+    SEND AGAIN
+  </ion-button>
+</ion-footer>

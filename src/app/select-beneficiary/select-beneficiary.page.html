@@ -1,0 +1,57 @@
+<ion-header no-border>
+  <ion-toolbar [class.show-background]="showToolbar" style="padding: 8px 0 8px 0">
+    <ion-buttons slot="start">
+      <ion-back-button text="" [color]="currentColor"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="gotoAdd()">
+        <ion-icon [color]="currentColor" slot="icon-only" src="../../assets/add_benficiary.svg"></ion-icon>
+      </ion-button>
+      <ion-button (click)="toggleSearch()" *ngIf="beneficiaryList && beneficiaryList.length !== 0">
+        <ion-icon slot="icon-only" name="ios-search" [color]="currentColor"></ion-icon>
+      </ion-button>
+      <!-- <ion-menu-toggle>
+        <ion-button>
+          <ion-icon [color]="currentColor" src="../../assets/menu.svg"></ion-icon>
+        </ion-button>
+      </ion-menu-toggle> -->
+      <!-- <ion-menu-button [color]="currentColor"></ion-menu-button> -->
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen (ionScroll)="onScroll($event)" [scrollEvents]="true">
+  <div class="container">
+    <div class="header" style="height: 15vh; min-height: 15vh">
+      <h1 class="big-title" style="color: white">Select Beneficiary</h1>
+    </div>
+    <div class="content" style="padding: 12px 22px 22px 22px">
+      <ion-searchbar *ngIf="searchEnabled" [(ngModel)]="searchTerm" [showCancelButton]="true" (ionChange)="search()"
+        (ionCancel)="toggleSearch()"></ion-searchbar>
+      <div style="text-align: center">
+        <ion-spinner *ngIf="!beneficiaryList"></ion-spinner>
+      </div>
+      <div *ngIf="beneficiaryList && beneficiaryList.length === 0" class="no-data">
+        No beneficiary to select. Please add a new one.
+      </div>
+      <ion-list *ngIf="beneficiaryList && beneficiaryList.length !== 0">
+        <ion-item (click)="gotoDetails(beneficiary)" *ngFor="let beneficiary of beneficiaryList">
+          <ion-avatar slot="start">
+            <div class="avatar" [ngStyle]="{'background': beneficiary.Color}">
+              {{beneficiary.Name | slice:0:1}}
+            </div>
+          </ion-avatar>
+          <ion-label>
+            <h3 class="title-color">
+              {{beneficiary.Name}}
+            </h3>
+            <h3 class="subtitle-color">
+              {{beneficiary.AccNo}}
+            </h3>
+            <ion-label color="primary" style="padding: 4px 0 8px 0">{{beneficiary.BankName}}</ion-label>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+</ion-content>

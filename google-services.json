@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "547164488491",
+    "firebase_url": "https://kuwait-india-exchange-16094.firebaseio.com",
+    "project_id": "kuwait-india-exchange-16094",
+    "storage_bucket": "kuwait-india-exchange-16094.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:547164488491:android:343eac3004adbab3",
+        "android_client_info": {
+          "package_name": "com.kuwaitindiaexchange"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "547164488491-n37jtj75mguriu0qpnksd88jh2i3dtkh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGHIiSETPnn6IoaQ4LOsF8EgkCgT-AwD0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "547164488491-n37jtj75mguriu0qpnksd88jh2i3dtkh.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "547164488491-pupdupkhq693fge9co8309au08fnk8gj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.kuwaitindiaexchange"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

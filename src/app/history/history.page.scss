@@ -1,0 +1,21 @@
+/* Transparent standard */
+ion-toolbar {
+    --background: transparent;
+    --ion-color-base: transparent !important;
+  }
+  
+  /* Show background if class is active */
+  .show-background {
+    border-style: none;
+    background: var(--ion-color-white);
+  }
+  
+  ion-content {
+    --background: linear-gradient(#0073d6, #84dffd, #00c0ff);
+  }
+  
+  .forward-icon {
+    font-size: 1.5em;
+    top: 20%; 
+    position: relative
+  }

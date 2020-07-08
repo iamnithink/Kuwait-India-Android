@@ -1,0 +1,8 @@
+{
+  "name": "Kuwait India",
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
+  "type": "angular"
+}

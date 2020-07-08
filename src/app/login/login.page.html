@@ -1,0 +1,29 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="" color="light"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <div class="container">
+    <div class="header" style="height: 20vh; max-height: 20vh">
+      <h1 class="big-title" style="color: white">Sign In</h1>
+    </div>
+    <div class="content">
+      <ion-item style="--padding-start: 0px">
+        <ion-label position="floating">USER ID</ion-label>
+        <ion-input [(ngModel)]="username"></ion-input>
+      </ion-item>
+      <ion-button class="login-btn" expand="block" size="large" (click)="loginPressed()">
+        NEXT
+      </ion-button>
+      <div class="ion-text-center ion-padding">
+        Not a user yet?
+        <span style="color: var(--ion-color-primary)" (click)="gotoSignup()">SIGN UP</span> OR
+        <span style="color: var(--ion-color-primary)" (click)="gotoForgotPassword()">FORGOT PASSWORD</span>
+      </div>
+    </div>
+  </div>
+</ion-content>

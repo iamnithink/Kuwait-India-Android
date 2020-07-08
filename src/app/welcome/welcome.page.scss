@@ -1,0 +1,92 @@
+.logo {
+  max-height: 42vh;
+  padding: 10%;
+  padding-bottom: 0;
+  min-width: 100%;
+  text-align: center;
+}
+.logo-container {
+  text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 10%;
+}
+ion-grid {
+  min-height: 100% !important;
+  display: flex;
+  flex-flow: column;
+}
+:host {
+  .login-btn {
+    margin: 32px 0px 0px 0px;
+    --border-radius: 6px;
+  }
+  .signup-btn {
+    --border-radius: 6px;
+    --border-width: 2px;
+    margin: 10px 0px 0px 0px;
+  }
+  .note {
+    margin: 16px 0px 8px 0px;
+    font-size: 14px;
+    line-height: 1.5;
+    a {
+      color: var(--ion-color-primary);
+    }
+  }
+  .notifications-badge {
+    position: absolute;
+    top: 5%;
+    right: 20px;
+    font-size: 10px;
+    z-index: 20;
+    background: var(--ion-color-danger);
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+  
+    .bottom-buttons {
+      padding-bottom: 20%;
+    }
+  }
+  
+  /* 
+    ##Device = Most of the Smartphones Mobiles (Portrait)
+    ##Screen = B/w 320px to 479px
+  */
+  
+  @media (min-width: 320px) and (max-width: 410px) {
+    
+    .bottom-buttons {
+      padding-bottom: 10%;
+    }
+  }
+  
+  @media (min-width: 411px) and (max-width: 767px) {
+    
+    .bottom-buttons{
+      padding-bottom: 12%;
+    }
+  }
+  
+  @media only screen 
+    and (min-device-width: 375px) 
+    and (max-device-width: 812px) 
+    and (-webkit-min-device-pixel-ratio: 3)
+    and (orientation: portrait) { 
+      
+      .bottom-buttons {
+        padding-bottom: 20%
+      }
+  }
+  
+  
+  @media (min-width: 0px) and (max-width: 320px) {
+    
+    .bottom-buttons {
+      padding-bottom: 8%
+    }
+  }
+}

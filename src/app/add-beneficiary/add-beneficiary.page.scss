@@ -1,0 +1,22 @@
+
+  ion-content {
+    --background: linear-gradient(#0073d6, #84dffd, #00c0ff);
+  }
+
+  /* Show background if class is active */
+  .show-background {
+    border-style: none;
+    background: var(--ion-color-white);
+  }
+
+  mat-form-field {
+    width: 100%;
+  }
+  
+  ::ng-deep mat-option.mat-option-text {
+    white-space: normal;
+  }
+  ::ng-deep .mat-select-value-text {
+    white-space: normal !important;
+  }
+  

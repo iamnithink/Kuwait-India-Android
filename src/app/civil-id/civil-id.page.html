@@ -1,0 +1,43 @@
+<ion-header no-border>
+  <ion-toolbar [class.show-background]="showToolbar" style="padding: 8px 0 8px 0">
+    <ion-buttons slot="start">
+      <ion-back-button text="" [color]="currentColor"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen (ionScroll)="onScroll($event)" [scrollEvents]="true">
+
+  <div class="container">
+    <div class="header" style="height: 20vh; min-height: 20vh; max-height: 20vh">
+      <h1 class="big-title" style="color: white">Upload Civil-ID</h1>
+      <!-- <h5 style="color: white">Fill the applicable details</h5> -->
+    </div>
+    <div class="content">
+      <ion-row>
+        <div class="d-block center">
+          <img [src]="imageDataFrontUrl" class="img-responsive"  (click)="selectImage('front', $event)"/>
+          <ion-button fill="clear" expand="full" color="primary" (click)="selectImage('front', $event)">
+            <ion-icon slot="start" name="camera"></ion-icon>
+            Select front Image
+          </ion-button>
+        </div>
+      </ion-row>
+      <br/>
+      <ion-row>
+        <div class="d-block center">
+          <img [src]="imageDataBackUrl" class="img-responsive"  (click)="selectImage('back')"/>
+          <ion-button fill="clear" expand="full" color="primary" (click)="selectImage('back')">
+            <ion-icon slot="start" name="camera"></ion-icon>
+            Select back Image
+          </ion-button>
+          </div>
+      </ion-row>
+      <ion-button (click)="onSubmit()" expand="block mt-3">
+        SUBMIT
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,38 @@
+<ion-content>
+  <ion-button style="position: absolute; top: 4%; right: 8px; z-index: 10;" fill="clear" (click)="goto(2)">
+    <ion-icon slot="icon-only" src="../../assets/bell.svg" color="dark">
+    </ion-icon>
+    <!-- <img src="../../assets/bell.png"> -->
+  </ion-button>
+  <ion-badge *ngIf='notificationsCount !== 0' class="notifications-badge">{{notificationsCount | number}}
+  </ion-badge>
+  <ion-button style="position: absolute; top: 4%; left: 8px; z-index: 10;" fill="clear" (click)="goto(1)">
+    <ion-icon slot="icon-only" src="../../assets/location_dark.svg" color="dark"></ion-icon>
+    <!-- <img src="../../assets/location_dark.svg"> -->
+  </ion-button>
+  <ion-grid no-padding>
+    <ion-row style="flex-grow: 1;" no-padding>
+      <ion-col no-padding size="12" style="display: flex; justify-content: center">
+        <div class="logo-container">
+          <img class="logo" src="../../assets/logo-svg.svg" />
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-padding-horizontal bottom-buttons">
+      <ion-col class="ion-padding" size="12">
+        <!-- <h1 class="big-title">Welcome</h1>
+        <div class="transaction-text">Customer's Trust -<br>Kuwait India's Pre-eminence</div> -->
+        <ion-button class="login-btn" expand="block" size="large" (click)="gotoLogin()">
+          Existing User?
+        </ion-button>
+        <ion-button class="signup-btn" expand="block" fill="outline" size="large" (click)="gotoSignup()">
+          New User
+        </ion-button>
+        <div class="note ion-text-center">
+          By signing up, you agree to our
+          <a href="http://www.kuwaitindiaexchange.com/disclaimers/">terms and conditions.</a>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

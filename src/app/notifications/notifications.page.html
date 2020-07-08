@@ -1,0 +1,45 @@
+<ion-header no-border>
+  <ion-toolbar [class.show-background]="true" style="padding: 8px 0 8px 0">
+    <ion-buttons slot="start">
+      <ion-back-button text="" color="dark"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <div class="big-title title-color" style="font-size: 1.5em; padding: 16px">Notifications</div>
+
+  <div style="text-align: center; margin-top: 10%" *ngIf="notifications && notifications.length === 0">
+    No Notifications!
+  </div>
+
+  <ion-list lines="none" *ngIf="notifications && notifications.length !== 0">
+    <ion-item class="beneficiary-card" *ngFor="let notification of notifications">
+      <ion-grid no-padding>
+        <ion-row no-padding>
+          <ion-col size="12" no-padding>
+            <ion-item class="name-item inner" lines="none">
+              <ion-avatar slot="start">
+                <div class="avatar" style="font-size: 12px" [ngStyle]="{background: notification.color}">
+                  <ion-label>
+                    <div class="avatar-text">{{notification.date}}</div>
+                    <div class="avatar-text">{{notification.month}}</div>
+                  </ion-label>
+                </div>
+              </ion-avatar>
+              <ion-label style="max-width: 100%">
+                <h3 class="title-color">
+                  {{notification.title}}
+                </h3>
+                <h3 class="subtitle-color">
+                  {{notification.body}}
+                </h3>
+              </ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

@@ -1,0 +1,29 @@
+<ion-header no-border>
+  <ion-toolbar [class.show-background]="showToolbar" style="padding: 8px 0 8px 0">
+    <ion-buttons slot="start">
+      <ion-back-button text="" [color]="currentColor"></ion-back-button>
+    </ion-buttons>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen (ionScroll)="onScroll($event)" [scrollEvents]="true">
+  <div class="container">
+    <div class="header" style="height: 60vh; min-height: 60vh">
+      <div class="big-title white-text">
+        Make Payment
+      </div>
+      <div class="white-text" style="padding: 12px 0">
+        Payment must be done throught K-Net card
+      </div>
+      <div style="width: 100%; display: flex; justify-content: center; margin: 20px 0">
+        <ion-img src="../../assets/knetLogo.png" style="width: 50%" ></ion-img>
+      </div>
+    </div>
+    <div style="position: absolute; bottom: 0; height: 48px; width: 100%; text-align: center">
+      <ion-button fill="clear" expand="full" style="--color: white">
+        Proceed to Pay
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

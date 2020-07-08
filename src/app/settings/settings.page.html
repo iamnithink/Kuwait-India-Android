@@ -1,0 +1,80 @@
+<ion-header no-border>
+  <ion-toolbar [class.show-background]="showToolbar" style="padding: 8px 0 8px 0">
+    <ion-buttons slot="start">
+      <ion-back-button text="" [color]="currentColor"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen (ionScroll)="onScroll($event)" [scrollEvents]="true" *ngIf="user">
+  <div class="container">
+    <div class="header" style="height: 20vh; min-height: 20vh">
+      <ion-item style="--background: transparent" lines="none">
+        <div class="menu-avatar" style="margin: 0 16px 0 0" [ngStyle]="{background: avatarBackground2}">
+          {{user.Name | slice:0:1}}
+        </div>
+        <ion-label style="max-width: 100%">
+          <h2 class="white-text">
+            {{user.Name}}
+          </h2>
+          <h3 class="white-text">
+            {{user.Nationality}}
+          </h3>
+        </ion-label>
+      </ion-item>
+    </div>
+    <div class="content" style="padding: 24px 24px">
+      <ion-list>
+        <ion-label style="font-weight: bold" class="title-color">Account</ion-label>
+        <ion-item>
+          <ion-icon src="../../assets/phone.svg" slot="start"></ion-icon>
+          <ion-label>
+            <div class="title-color">Mobile</div>
+            <div class="subtitle-color">{{user.Mobile}}</div>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon src="../../assets/email.svg" slot="start"></ion-icon>
+          <ion-label>
+            <div class="title-color">Email</div>
+            <div class="subtitle-color">{{user.Email}}</div>
+          </ion-label>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-icon src="../../assets/language.svg" slot="start"></ion-icon>
+          <ion-label>
+            <div class="title-color">Language</div>
+            <div class="subtitle-color">English</div>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+      <ion-list style="margin-top: 16px">
+
+        <ion-label style="font-weight: bold;" class="title-color">Privacy & Security</ion-label>
+        <ion-item (click)="changePassword()">
+          <ion-icon src="../../assets/lock.svg" slot="start"></ion-icon>
+          <ion-label>
+            <div class="title-color">Security</div>
+            <div class="subtitle-color">Change Password</div>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon src="../../assets/notification.svg" slot="start"></ion-icon>
+          <ion-label>
+            <div class="title-color">Notifications</div>
+            <div class="subtitle-color">Turn Notifications on/off</div>
+          </ion-label>
+          <ion-toggle slot="end" [(ngModel)]="isNotificationsEnabled" (ionChange)="toggleNotifications()"></ion-toggle>
+        </ion-item>
+        <ion-item (click)="onLogout()">
+          <ion-icon src="../../assets/logout.svg" slot="start"></ion-icon>
+          <ion-label>
+            <div class="title-color">Logout</div>
+            <div class="subtitle-color">Click here to log out of the app</div>
+          </ion-label>
+        </ion-item>
+
+      </ion-list>
+    </div>
+  </div>
+</ion-content>

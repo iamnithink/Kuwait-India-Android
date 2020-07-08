@@ -1,0 +1,92 @@
+<ion-header no-border>
+  <ion-toolbar [class.show-background]="showToolbar" style="padding: 8px 0 8px 0">
+    <ion-buttons slot="start">
+      <ion-back-button text="" [color]="currentColor"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <!-- <ion-button>
+        <ion-icon [color]="currentColor" slot="icon-only" name="add"></ion-icon>
+      </ion-button> -->
+      <!-- <ion-menu-toggle>
+        <ion-button>
+          <ion-icon [color]="currentColor" src="../../assets/menu.svg"></ion-icon>
+        </ion-button>
+      </ion-menu-toggle> -->
+      <!-- <ion-menu-button [color]="currentColor"></ion-menu-button> -->
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen (ionScroll)="onScroll($event)" [scrollEvents]="true">
+
+  <div class="container">
+    <div class="header" style="height: 20vh; min-height: 20vh; max-height: 20vh">
+      <h1 class="big-title" style="color: white">Add a Beneficiary</h1>
+      <h5 style="color: white">Fill the applicable details</h5>
+    </div>
+    <div class="content">
+      <form [formGroup]="addForm">
+        <mat-form-field>
+          <input formControlName="name" type="text" matInput placeholder="Name Of Beneficiary">
+        </mat-form-field>
+        <mat-form-field style="min-width: 100%">
+          <mat-select formControlName="nationality" name="nationality" placeholder="Select Nationality">
+            <mat-option *ngFor="let nationality of nationalityList" [value]="nationality">
+              {{nationality.Name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <input type="number" formControlName="accountNo" matInput placeholder="Beneficiary Account Number">
+        </mat-form-field>
+        <mat-form-field>
+          <input type="text" formControlName="bankName" matInput placeholder="Bank Name">
+        </mat-form-field>
+        <mat-form-field>
+          <input type="text" formControlName="branchName" matInput placeholder="Branch Name">
+        </mat-form-field>
+        <!-- <mat-form-field>
+          <input formControlName="purpose" type="text" matInput placeholder="Purpose" [matAutocomplete]="auto1">
+          <mat-autocomplete #auto1="matAutocomplete">
+            <mat-option *ngFor="let purpose of purposeList" [value]="purpose.Description">
+              {{purpose.Description}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field> -->
+        <!-- <mat-form-field style="min-width: 100%">
+          <mat-select formControlName="purpose" name="purpose" placeholder="Select Purpose">
+            <mat-option *ngFor="let purpose of purposeList" [value]="purpose">
+              {{purpose.Description}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field> -->
+        <mat-form-field style="min-width: 100%">
+          <mat-select formControlName="relation" name="relation" placeholder="Select Relation">
+            <mat-option *ngFor="let relation of relationList" [value]="relation">
+              {{relation.Description}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field style="min-width: 100%">
+          <mat-select formControlName="currency" name="currency" placeholder="Select Currency">
+            <mat-option *ngFor="let currency of rateList" [value]="currency">
+              {{currency.CurrencyName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <input type="text" formControlName="ifsc" matInput placeholder="IFSC Code">
+        </mat-form-field>
+        <mat-form-field>
+          <input type="text" formControlName="swift" matInput placeholder="Swift Code">
+        </mat-form-field>
+        <mat-form-field>
+          <input type="text" formControlName="iban" matInput placeholder="IBAN Code">
+        </mat-form-field>
+        <ion-button (click)="onSubmit()" expand="block">
+          Proceed
+        </ion-button>
+      </form>
+    </div>
+  </div>
+</ion-content>

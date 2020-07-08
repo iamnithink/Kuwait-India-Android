@@ -1,0 +1,31 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-text-center" fullscreen>
+  <div style="width: 100%">
+    <img src="../../assets/false.png" class="success" />
+  </div>
+  <!-- <ion-label color="light">
+    Thank you for registering with
+    Kuwait India International Exchange.
+  </ion-label> -->
+
+  <ion-text color="light" style="line-height: 1.5em">
+    Failure!
+    <br>
+    <div style="padding: 1em 2em 1em 2em">
+      Unable to process your transaction. Please try again.
+    </div>
+  </ion-text>
+  <div style="position: absolute; bottom: 0; width: 100%" class="ion-text-center">
+    <ion-button expand="full" fill="clear" strong="true" style="--color: var(--ion-color-light); width: 100%;"
+      (click)="retry()">
+      Try Again1
+    </ion-button>
+  </div>
+</ion-content>

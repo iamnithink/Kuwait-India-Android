@@ -1,0 +1,40 @@
+:host {
+  ion-content {
+    --background: linear-gradient(#0073d6, #84dffd, #00c0ff);
+  }
+  .image-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .btn {
+    --border-radius: 6px;
+    --border-width: 4px;
+    height: 23vw;
+    --width: 23vw;
+    --padding-start: 0px;
+    --padding-end: 0px;
+  }
+
+  ::ng-deep .mat-form-field-underline {
+    display: none;
+  }
+
+  ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+    padding-bottom: 0;
+    padding-top: 24px;
+  }
+
+  ::ng-deep mat-option.mat-option-text {
+    white-space: normal;
+  }
+  ::ng-deep .mat-select-value-text {
+    white-space: normal;
+  }
+
+  .answer-container {
+    padding: 8px !important;
+    border-radius: 4px;
+    background: #f1f1f1;
+  }
+}

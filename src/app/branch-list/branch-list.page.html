@@ -1,0 +1,217 @@
+<ion-header no-border>
+  <ion-toolbar [class.show-background]="true" style="padding:0">
+    <ion-buttons slot="start">
+      <ion-back-button text="" color="dark"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <div class="big-title title-color" style="font-size: 1.5em; padding: 16px">Our Branches</div>
+  <ion-list lines="none">
+    <ion-item class="beneficiary-card" *ngFor="let location of locations">
+      <ion-grid no-padding>
+        <ion-row no-padding>
+          <ion-col size="12" no-padding>
+            <ion-item class="name-item inner" lines="none">
+              <img src="../../assets/mark.svg" slot="start" style="position: relative; top: -20px">
+              <ion-label>
+                <div class="title-color" style="padding: 0 0 4px 0">
+                  {{location.NAME}}
+                </div>
+                <div class="subtitle-color" style="padding: 4px 0">
+                  {{location.ADDRESS}}
+                </div>
+                <div style="white-space: normal; padding: 4px 0">
+                  <ion-chip color="primary" mode="ios" outline="true" (click)="onCallClick(location)">
+                    <ion-icon name="ios-call"></ion-icon>
+                    <ion-label>Call</ion-label>
+                  </ion-chip>
+                  <ion-chip color="primary" mode="ios" outline="true" *ngIf="location.LATITUDE !== ''"
+                    (click)="onLocationClick(location)">
+                    <ion-icon name="md-navigate"></ion-icon>
+                    <ion-label>Get Directions</ion-label>
+                  </ion-chip>
+                </div>
+              </ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <!-- <ion-item class="beneficiary-card">
+      <ion-grid no-padding>
+        <ion-row no-padding>
+          <ion-col size="12" no-padding>
+            <ion-item class="name-item inner" lines="none">
+              <img src="../../assets/mark.svg" slot="start" style="position: relative; top: -20px">
+              <ion-label>
+                <div class="title-color" style="padding: 0 0 4px 0">
+                  Branch Name
+                </div>
+                <div class="subtitle-color" style="padding: 4px 0">
+                  Branch Addresss
+                </div>
+                <div style="white-space: normal; padding: 4px 0">
+                  <ion-chip color="primary" mode="ios" outline="true">
+                    <ion-icon name="ios-call"></ion-icon>
+                    <ion-label>Call</ion-label>
+                  </ion-chip>
+                  <ion-chip color="primary" mode="ios" outline="true">
+                    <ion-icon name="md-navigate"></ion-icon>
+                    <ion-label>Get Directions</ion-label>
+                  </ion-chip>
+                </div>
+              </ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item class="beneficiary-card">
+      <ion-grid no-padding>
+        <ion-row no-padding>
+          <ion-col size="12" no-padding>
+            <ion-item class="name-item inner" lines="none">
+              <img src="../../assets/mark.svg" slot="start" style="position: relative; top: -20px">
+              <ion-label>
+                <div class="title-color" style="padding: 0 0 4px 0">
+                  Branch Name
+                </div>
+                <div class="subtitle-color" style="padding: 4px 0">
+                  Branch Addresss
+                </div>
+                <div style="white-space: normal; padding: 4px 0">
+                  <ion-chip color="primary" mode="ios" outline="true">
+                    <ion-icon name="ios-call"></ion-icon>
+                    <ion-label>Call</ion-label>
+                  </ion-chip>
+                  <ion-chip color="primary" mode="ios" outline="true">
+                    <ion-icon name="md-navigate"></ion-icon>
+                    <ion-label>Get Directions</ion-label>
+                  </ion-chip>
+                </div>
+              </ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item class="beneficiary-card">
+      <ion-grid no-padding>
+        <ion-row no-padding>
+          <ion-col size="12" no-padding>
+            <ion-item class="name-item inner" lines="none">
+              <img src="../../assets/mark.svg" slot="start" style="position: relative; top: -20px">
+              <ion-label>
+                <div class="title-color" style="padding: 0 0 4px 0">
+                  Branch Name
+                </div>
+                <div class="subtitle-color" style="padding: 4px 0">
+                  Branch Addresss
+                </div>
+                <div style="white-space: normal; padding: 4px 0">
+                  <ion-chip color="primary" mode="ios" outline="true">
+                    <ion-icon name="ios-call"></ion-icon>
+                    <ion-label>Call</ion-label>
+                  </ion-chip>
+                  <ion-chip color="primary" mode="ios" outline="true">
+                    <ion-icon name="md-navigate"></ion-icon>
+                    <ion-label>Get Directions</ion-label>
+                  </ion-chip>
+                </div>
+              </ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item class="beneficiary-card">
+      <ion-grid no-padding>
+        <ion-row no-padding>
+          <ion-col size="12" no-padding>
+            <ion-item class="name-item inner" lines="none">
+              <img src="../../assets/mark.svg" slot="start" style="position: relative; top: -20px">
+              <ion-label>
+                <div class="title-color" style="padding: 0 0 4px 0">
+                  Branch Name
+                </div>
+                <div class="subtitle-color" style="padding: 4px 0">
+                  Branch Addresss
+                </div>
+                <div style="white-space: normal; padding: 4px 0">
+                  <ion-chip color="primary" mode="ios" outline="true">
+                    <ion-icon name="ios-call"></ion-icon>
+                    <ion-label>Call</ion-label>
+                  </ion-chip>
+                  <ion-chip color="primary" mode="ios" outline="true">
+                    <ion-icon name="md-navigate"></ion-icon>
+                    <ion-label>Get Directions</ion-label>
+                  </ion-chip>
+                </div>
+              </ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item class="beneficiary-card">
+      <ion-grid no-padding>
+        <ion-row no-padding>
+          <ion-col size="12" no-padding>
+            <ion-item class="name-item inner" lines="none">
+              <img src="../../assets/mark.svg" slot="start" style="position: relative; top: -20px">
+              <ion-label>
+                <div class="title-color" style="padding: 0 0 4px 0">
+                  Branch Name
+                </div>
+                <div class="subtitle-color" style="padding: 4px 0">
+                  Branch Addresss
+                </div>
+                <div style="white-space: normal; padding: 4px 0">
+                  <ion-chip color="primary" mode="ios" outline="true">
+                    <ion-icon name="ios-call"></ion-icon>
+                    <ion-label>Call</ion-label>
+                  </ion-chip>
+                  <ion-chip color="primary" mode="ios" outline="true">
+                    <ion-icon name="md-navigate"></ion-icon>
+                    <ion-label>Get Directions</ion-label>
+                  </ion-chip>
+                </div>
+              </ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item class="beneficiary-card">
+      <ion-grid no-padding>
+        <ion-row no-padding>
+          <ion-col size="12" no-padding>
+            <ion-item class="name-item inner" lines="none">
+              <img src="../../assets/mark.svg" slot="start" style="position: relative; top: -20px">
+              <ion-label>
+                <div class="title-color" style="padding: 0 0 4px 0">
+                  Branch Name
+                </div>
+                <div class="subtitle-color" style="padding: 4px 0">
+                  Branch Addresss
+                </div>
+                <div style="white-space: normal; padding: 4px 0">
+                  <ion-chip color="primary" mode="ios" outline="true">
+                    <ion-icon name="ios-call"></ion-icon>
+                    <ion-label>Call</ion-label>
+                  </ion-chip>
+                  <ion-chip color="primary" mode="ios" outline="true">
+                    <ion-icon name="md-navigate"></ion-icon>
+                    <ion-label>Get Directions</ion-label>
+                  </ion-chip>
+                </div>
+              </ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item> -->
+  </ion-list>
+</ion-content>

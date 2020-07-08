@@ -1,0 +1,23 @@
+.beneficiary-card {
+    width: 100%;
+    padding: 0 8px 8px 8px;
+    --border-top-width: 2px;
+    --border-end-width: 2px;
+    --border-bottom-width: 2px;
+    --border-start-width: 2px;
+    --border-radius: 5px;
+    
+    --inner-border-width: 0;
+    --inner-padding-end: 0px;
+    --border-width: var(--border-top-width) var(--border-end-width) var(--border-bottom-width) var(--border-start-width);
+    --border-color: var(--ion-beneficiary-border-color);
+    --background: var(--ion-beneficiary-background-color);
+    .inner {
+      --background: var(--ion-beneficiary-background-color);
+    }
+  }
+
+  .avatar-text {
+    display: flex;
+    justify-content: center;
+  }

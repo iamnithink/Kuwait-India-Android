@@ -1,0 +1,68 @@
+<ion-app>
+  <ion-menu side="end">
+    <ion-item style="padding: 16px 0 0 0" lines="none" *ngIf="rootUser">
+      <div class="menu-avatar" style="margin: 0 16px 0 0" [ngStyle]="{background: avatarBackground}">
+        {{rootUser.Name | slice:0:1}}
+      </div>
+      <ion-label style="max-width: 100%">
+        <h2 class="title-color">
+          {{rootUser.Name}}
+        </h2>
+        <h3 class="subtitle-color">
+          {{rootUser.Nationality}}
+        </h3>
+      </ion-label>
+    </ion-item>
+    <ion-content>
+      <ion-list lines="none">
+        <!-- <ion-menu-toggle auto-hide="false">
+          <ion-item (click)="onMenuClick(p)">
+            <ion-icon slot="start" src="assets/add_beneficiary-dark.svg"></ion-icon>
+            <ion-label  [routerLink]="['/civil-id']">
+              e-KYC
+            </ion-label>
+          </ion-item>
+          <ion-item-group submenu [class.visible]="showSubmenu" style="height: inherit;">
+            <ion-item submenu-item style="overflow: hidden;
+              display: block;
+              height: 0;
+              transition: height .3s linear;
+              padding-left: 20%;" [routerLink]="['/civil-id']">
+                <ion-icon slot="start" [src]="sub.icon"></ion-icon>
+                <ion-label>
+                  Civil ID
+                </ion-label>
+            </ion-item>
+            <ion-item submenu-item style="overflow: hidden;
+              display: block;
+              height: 0;
+              transition: height .3s linear;
+              padding-left: 20%;" [routerLink]="['/civil-id']">
+                <ion-icon slot="start" [src]="sub.icon"></ion-icon>
+                <ion-label>
+                  Video
+                </ion-label>
+              </ion-item>
+          </ion-item-group>
+        </ion-menu-toggle> -->
+
+        <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
+          <ion-item (click)="onMenuClick(p)">
+            <ion-icon slot="start" [src]="p.icon"></ion-icon>
+            <ion-label>
+              {{ p.title }}
+            </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+    <ion-item lines="none" style="padding-bottom: 24px;">
+      <div class='menu-text'>
+        Need help? Contact Us <br />
+        <a class="text-center" style="position: relative;top: 6px;" href="tel:{{contactNumber}}" target="_blank"
+          *ngIf="contactNumber">{{contactNumber}}</a>
+      </div>
+    </ion-item>
+  </ion-menu>
+  <ion-router-outlet main></ion-router-outlet>
+</ion-app>

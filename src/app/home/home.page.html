@@ -1,0 +1,195 @@
+<ion-header no-border>
+  <ion-toolbar [class.show-background]="showToolbar" [class.no-show-bg]="!showToolbar">
+    <ion-title slot="start">
+      <ion-item lines='none' style="--background: 'transparent'">
+        <ion-avatar slot="start">
+          <div class="avatar" [ngStyle]="{'background': avatarBackground2}">
+            {{user.Name | slice:0:1}}
+          </div>
+        </ion-avatar>
+        <ion-label [color]="currentColor">
+          <h3 style='font-weight: bold'>
+            {{user.Name}}
+          </h3>
+          <h3>
+            {{user.Nationality}}
+          </h3>
+        </ion-label>
+      </ion-item>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <a href="tel:{{contactNumber}}"><ion-icon [color]="currentColor" slot="icon-only" src="../../assets/help.svg"></ion-icon></a>
+      </ion-button>
+      <ion-button (click)="didClickLogout()">
+        <ion-icon [color]="currentColor" slot="icon-only" src="../../assets/location_dark.svg"></ion-icon>
+      </ion-button>
+      <ion-menu-button [color]="currentColor"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen (ionScroll)="onScroll($event)" [scrollEvents]="true" scrollX="true">
+  <div class="container">
+    <div class="header" style='max-height: 20vh; height: 20vh; padding: 8px'>
+      <ion-grid style="margin-left: 8px; margin-right: 8px" no-padding>
+        <ion-row no-padding>
+          <ion-col size="3" no-padding (click)="headerButtonClicked(1)">
+            <ion-row class="ion-text-center" no-padding>
+              <ion-col size="12">
+                <div class='avatar menu-icons'>
+                  <img src="../../assets/history.svg" />
+                </div>
+              </ion-col>
+              <ion-col size="12">
+                <div class='menu-text main-menu-color'>
+                  Transaction History
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col size="3" no-padding (click)="headerButtonClicked(2)">
+            <ion-row class="ion-text-center" no-padding>
+              <ion-col size="12">
+                <div class='avatar menu-icons'>
+                  <img src="../../assets/send_money.svg" />
+                </div>
+              </ion-col>
+              <ion-col size="12">
+                <div class='menu-text main-menu-color'>
+                  Send Money
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col size="3" no-padding (click)="headerButtonClicked(3)">
+            <ion-row class="ion-text-center" no-padding>
+              <ion-col size="12">
+                <div class='avatar menu-icons'>
+                  <img src="../../assets/rates.svg" />
+                </div>
+              </ion-col>
+              <ion-col size="12">
+                <div class='menu-text main-menu-color'>
+                  Exchange Rates
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col size="3" no-padding (click)="headerButtonClicked(4)">
+            <ion-row class="ion-text-center" no-padding>
+              <ion-col size="12">
+                <div class='avatar menu-icons'>
+                  <img src="../../assets/add_benficiary.svg" />
+                </div>
+              </ion-col>
+              <ion-col size="12">
+                <div class='menu-text main-menu-color'>
+                  Add a Benificiary
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <div class="content" style='padding: 16px'>
+      <div style="text-align: center">
+        <ion-spinner *ngIf="!latestTransactions || !frequentBeneficiaries"></ion-spinner>
+      </div>
+      <div *ngIf="isNoData" class="no-data">
+        No Transactions or Frequent Beneficairies!
+      </div>
+      <div *ngIf="!isNoData">
+        <div *ngIf="latestTransactions">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="auto">
+                <div class="bold">
+                  Latest Transactions
+                </div>
+              </ion-col>
+              <ion-col>
+                <ion-label class="see-more" (click)="headerButtonClicked(1)">
+                  SEE ALL
+                </ion-label>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          <div class="scrolling-wrapper">
+            <div class="card" *ngFor="let transaction of latestTransactions" (click)="gotoTransDetails(transaction)">
+              <ion-item class="transaction-card">
+                <div class="inner">
+                  <ion-grid no-padding>
+                    <ion-row no-padding>
+                      <ion-item style="--padding-start: 0px; min-width: 100%" lines="none">
+                        <ion-avatar slot="start">
+                          <div class="avatar" [ngStyle]="{background: transaction.BenefColor}">
+                            {{transaction.BeneficiaryName | slice:0:1}}
+                          </div>
+                        </ion-avatar>
+                        <ion-label>
+                          <h3 class="title-color">
+                            {{transaction.BeneficiaryName}}
+                          </h3>
+                          <h3 class="subtitle-color">
+                            {{transaction.Date}}
+                          </h3>
+                        </ion-label>
+                      </ion-item>
+                    </ion-row>
+                    <app-transaction [firstAmount]="transaction.TotalKD" [secondAmount]="transaction.AmountFC"
+                      firstUnit="KWD" [secondUnit]="transaction.Currency">
+                    </app-transaction>
+                  </ion-grid>
+                </div>
+              </ion-item>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="frequentBeneficiaries">
+          <div class="bold" style="padding: 16px 16px 8px 10px">
+            Frequent Beneficiaries
+          </div>
+
+          <ion-list lines="none" *ngIf="frequentBeneficiaries">
+            <ion-item class="beneficiary-card" *ngFor="let beneficiary of frequentBeneficiaries"
+              (click)="initiateTransaction(beneficiary)">
+              <ion-grid no-padding>
+                <ion-row no-padding>
+                  <ion-col size="11" no-padding>
+                    <ion-item class="name-item inner" lines="none">
+                      <ion-avatar slot="start">
+                        <div class="avatar" [ngStyle]="{background: beneficiary.BenefColor}">
+                          {{beneficiary.BeneficiaryName | slice:0:1}}
+                        </div>
+                      </ion-avatar>
+                      <ion-label style="max-width: 100%">
+                        <h3 class="title-color">
+                          {{beneficiary.BeneficiaryName}}
+                        </h3>
+                        <h3 class="subtitle-color">
+                          {{beneficiary.AccNo | creditCard}}
+                        </h3>
+                        <ion-label color="primary" style="
+                    padding: 4px 0 4px 0;">
+                          {{beneficiary.BankName}}
+                        </ion-label>
+                      </ion-label>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col size="1" no-padding style="text-align: center">
+                    <ion-icon name="ios-arrow-forward" class="beneficiary-forward-icon"></ion-icon>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-item>
+          </ion-list>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ion-content>

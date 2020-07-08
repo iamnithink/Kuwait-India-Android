@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>547164488491-pupdupkhq693fge9co8309au08fnk8gj.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.547164488491-pupdupkhq693fge9co8309au08fnk8gj</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAOUL5HSxj3mQjlN8_a_m1DjDT0yJoaZfE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>547164488491</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.kuwaitindiaexchange</string>
+	<key>PROJECT_ID</key>
+	<string>kuwait-india-exchange-16094</string>
+	<key>STORAGE_BUCKET</key>
+	<string>kuwait-india-exchange-16094.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:547164488491:ios:343eac3004adbab3</string>
+	<key>DATABASE_URL</key>
+	<string>https://kuwait-india-exchange-16094.firebaseio.com</string>
+</dict>
+</plist>

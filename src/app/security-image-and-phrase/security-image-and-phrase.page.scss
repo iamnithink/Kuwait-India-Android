@@ -1,0 +1,15 @@
+:host {
+    ion-content {
+      --background: linear-gradient(#0073d6, #84dffd, #00c0ff);
+    }
+    .login-btn {
+      margin: 32px 0px 0px 0px;
+      --border-radius: 6px;
+    }
+    .rounded-img {
+      --border-radius: 6px;
+      height: 23vw;
+      --width: 23vw;
+    }
+  }
+  

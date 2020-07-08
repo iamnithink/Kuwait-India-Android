@@ -1,0 +1,34 @@
+<div></div>
+<ion-row no-padding style="margin: 0 0 8px 0">
+  <ion-col [size]="isDetails ? 8 : 10" no-padding offset="2">
+    <ion-row no-padding style="min-height: 100%;">
+      <ion-col size="5" no-padding>
+        <ion-row no-padding>
+          <ion-col size="12" no-padding>
+            <span class="title-color transaction-text">{{ firstAmount }}</span>
+          </ion-col>
+        </ion-row>
+        <ion-row no-padding>
+          <ion-col size="12" no-padding>
+            <span class="title-color transaction-text currency-text">{{ firstUnit }}</span>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col size="2" no-padding style="text-align: center">
+        <ion-icon name="md-arrow-forward" color="primary" class="forward-icon"></ion-icon>
+      </ion-col>
+      <ion-col size="5" no-padding>
+        <ion-row no-padding>
+          <ion-col size="12" no-padding style="text-align: end">
+            <span class="title-color transaction-text">{{ secondAmount }}</span>
+          </ion-col>
+        </ion-row>
+        <ion-row no-padding>
+          <ion-col size="12" no-padding style="text-align: end">
+            <span class="title-color transaction-text currency-text">{{ secondUnit }}</span>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-col>
+</ion-row>

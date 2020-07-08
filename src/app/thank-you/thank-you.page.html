@@ -1,0 +1,33 @@
+<ion-content class="ion-text-center">
+  <div style="width: 100%">
+    <img src="../../assets/balloons.png" class="balloons" />
+  </div>
+  <!-- <ion-label color="light">
+    Thank you for registering with
+    Kuwait India International Exchange.
+  </ion-label> -->
+
+  <ion-text color="light" style="line-height: 1.5em">
+    Thank you for registering with
+    <br>
+    Kuwait India International Exchange.
+    <div style="padding: 1em 2em 1em 2em">
+      If you are a new customer, please visit any branch along with your CIVIL ID to complete the registration process or
+      complete the e-KYC from the menu to send your CIVIL ID and video statement.
+    </div>
+  </ion-text>
+  <ion-button fill="solid" size="block" class="locate-btn" (click)="gotoLocations()">
+    LOCATE BRANCH
+  </ion-button>
+  <!-- <ion-button fill="clear" size="block" class="tnc-btn">
+    Terms and Conditions
+  </ion-button> -->
+  <a href="http://www.kuwaitindiaexchange.com/disclaimers/" style="color: white; margin-top: 8px">Terms and
+    Conditions</a>
+  <div style="position: absolute; bottom: 0; width: 100%" class="ion-text-center">
+    <ion-button expand="full" fill="clear" strong="true" style="--color: var(--ion-color-light); width: 100%;"
+      (click)="gotoWelcome()">
+      CONTINUE
+    </ion-button>
+  </div>
+</ion-content>

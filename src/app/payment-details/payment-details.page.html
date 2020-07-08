@@ -1,0 +1,130 @@
+<ion-header no-border>
+  <ion-toolbar [class.show-background]="showToolbar" style="padding: 8px 0 8px 0">
+    <ion-buttons slot="start">
+      <ion-back-button text="" [color]="currentColor"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen (ionScroll)="onScroll($event)" [scrollEvents]="true">
+  <div class="container">
+    <div class="header" style="height: 25vh; min-height: 25vh">
+      <div class="big-title white-text" style="margin-bottom: 16px; font-size: 24px;">
+        Payment Details
+      </div>
+      <ion-grid no-padding style="--margin-left: 0; --margin-right: 0">
+        <ion-row no-padding style="align-items: center">
+          <ion-col size="10">
+            <div>
+              <span class="big-title white-text" style="font-weight: bold">KWD</span>
+              <span class="big-title white-text"> {{transRateResponse.KD_AMOUNT}}</span>
+            </div>
+          </ion-col>
+          <ion-col size="2">
+            <ion-fab-button size="small" color="light" fill="solid" shape="round" (click)="goBack()">
+              <ion-icon name="md-create"></ion-icon>
+            </ion-fab-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div class="content" style="padding: 16px">
+      <ion-item lines="none">
+        <ion-label text-wrap *ngIf="transRateResponse.BeneficiaryID && transRateResponse.BeneficiaryID !== ''">
+          <h2 class="bold-label">Beneficiary ID</h2>
+          <h2>{{transRateResponse.BeneficiaryID}}</h2>
+        </ion-label>
+      </ion-item>
+      <ion-item lines="none" *ngIf="beneficiary.Name && beneficiary.Name !== ''">
+        <ion-label class="bold-label" text-wrap>
+          <h2 class="bold-label">Beneficiary Name</h2>
+          <h2>{{beneficiary.Name}}</h2>
+        </ion-label>
+      </ion-item>
+      <ion-item lines="none" *ngIf="beneficiary.AccNo && beneficiary.AccNo !== ''">
+        <ion-label class="bold-label" text-wrap>
+          <h2 class="bold-label">Beneficiary Account Number</h2>
+          <h2>{{beneficiary.AccNo}}</h2>
+        </ion-label>
+      </ion-item>
+      <ion-item lines="none" *ngIf="beneficiary.BankName && beneficiary.BankName !== ''">
+        <ion-label class="bold-label" text-wrap>
+          <h2 class="bold-label">Beneficiary Bank</h2>
+          <h2>{{beneficiary.BankName}}</h2>
+        </ion-label>
+      </ion-item>
+      <ion-item lines="none" *ngIf="beneficiary.BankBranch && beneficiary.BankBranch !== ''">
+        <ion-label class="bold-label" text-wrap>
+          <h2 class="bold-label">Beneficiary Branch Name</h2>
+          <h2>{{beneficiary.BankBranch}}</h2>
+        </ion-label>
+      </ion-item>
+      <ion-item lines="none" *ngIf="purpose && purpose.Description !== ''">
+        <ion-label class="bold-label" text-wrap>
+          <h2 class="bold-label">Purpose</h2>
+          <h2>{{purpose.Description}}</h2>
+        </ion-label>
+      </ion-item>
+      <ion-item lines="none" *ngIf="sourceOfFunds && sourceOfFunds.Description !== ''">
+        <ion-label class="bold-label" text-wrap>
+          <h2 class="bold-label">Source of Funds</h2>
+          <h2>{{sourceOfFunds.Description}}</h2>
+        </ion-label>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label class="bold-label" text-wrap>
+          <h2 class="bold-label">Amount in {{toCurrency.CurrencyCode}}</h2>
+          <h2>{{kdAmt}}</h2>
+        </ion-label>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label class="bold-label" text-wrap>
+          <h2 class="bold-label">Exchange Rate</h2>
+          <h2>{{transRateResponse.Rate}}</h2>
+        </ion-label>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label class="bold-label" text-wrap>
+          <h2 class="bold-label">{{beneficiary.Currency}} Amount</h2>
+          <h2>{{transRateResponse.FC_AMOUNT}}</h2>
+        </ion-label>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label class="bold-label" text-wrap>
+          <h2 class="bold-label">Commission</h2>
+          <h2>{{transRateResponse.Commission}}</h2>
+        </ion-label>
+      </ion-item>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-grid no-padding>
+    <ion-row no-padding style="align-items: center; background-color: var(--ion-color-primary)">
+      <ion-col size="6" no-padding style="background-color: var(--ion-color-primary-shade); height: 100%;">
+        <ion-row no-padding>
+          <ion-col size="12" no-padding>
+            <span class="big-title white-text" style="margin: 8px 8px 0 12px; font-size: 12px; line-height: 0">
+              Payable Amount
+            </span>
+          </ion-col>
+        </ion-row>
+        <ion-row no-padding>
+          <ion-col size="12" no-padding style="margin: 0 8px 0 12px;">
+            <span class="big-title white-text" style="font-weight: bold; font-size: 1em">KWD</span>
+            <span class="big-title white-text" style="font-size: 1em"> {{transRateResponse.KD_AMOUNT}}</span>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col size="6" no-padding style="background-color: var(--ion-color-primary); text-align: center"
+        (click)="gotoPayment()">
+        <ion-row no-padding>
+          <ion-col size="12" no-padding>
+            <div class="white-text">PROCEED</div>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

@@ -1,0 +1,115 @@
+<ion-header no-border>
+  <ion-toolbar [class.show-background]="showToolbar" style="padding: 8px 0 8px 0">
+    <ion-buttons slot="start">
+      <ion-back-button text="" [color]="currentColor"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen (ionScroll)="onScroll($event)" [scrollEvents]="true">
+  <div class="container">
+    <div class="header" text-center style="height: 42vh; min-height: 42vh">
+      <div text-center>
+        <div class="new-avatar" [ngStyle]="{'background': beneficiary.Color}">
+          {{beneficiary.Name | slice:0:1}}
+        </div>
+        <ion-text class="white-text" style="font-weight: bold">
+          <h1>{{beneficiary.Name}}</h1>
+        </ion-text>
+        <div class="white-text">
+          {{beneficiary.AccNo}}
+        </div>
+        <div class="white-text" style="padding: 4px 0 0 0">
+          {{beneficiary.BankName}}
+        </div>
+      </div>
+    </div>
+    <div class="content" style="padding: 22px 22px 22px 22px">
+      <ion-grid>
+        <ion-row no-padding style="align-items: center">
+          <ion-col size="1" no-padding style="padding: 0 4px 0 0">
+            <img [src]="currentFlag" style="width: 100%; height: 1.2em;" *ngIf="currentFlag">
+          </ion-col>
+          <ion-col size="5" no-padding>
+            <mat-form-field style="max-width: 100%">
+              <mat-select class="currency-drop" [(ngModel)]="fromCurrency" name="current"
+                (selectionChange)="inputChanged()">
+                <mat-option *ngFor="let current of list" [value]="current">
+                  {{current.CurrencyCode}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </ion-col>
+          <ion-col size="6" no-padding style="text-align: end">
+            <ion-input type="number" placeholder="Amount" [(ngModel)]="fromAmount" (ionChange)="inputChanged()">
+            </ion-input>
+          </ion-col>
+        </ion-row>
+        <!-- <ion-row no-padding style="align-items: center; text-align: end">
+          <ion-col size="1" no-padding style="padding: 0 4px 0 0">
+            <ion-icon src="../../assets/india_flag.svg" style="width: 100%; height: 1.2em;"></ion-icon>
+          </ion-col>
+          <ion-col size="5" no-padding>
+            <mat-form-field style="max-width: 100%">
+              <mat-select [(ngModel)]="toCurrency" name="current2">
+                <mat-option [value]="toCurrency">
+                  {{toCurrency.CurrencyCode}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </ion-col>
+          <ion-col size="6" no-padding>
+            <ion-input type="number" placeholder="Amount" readonly="true" [(ngModel)]="toAmount"></ion-input>
+          </ion-col>
+        </ion-row> -->
+        <ion-row no-padding style="align-items: center; text-align: end; padding: 8px 0 22px 0">
+          <ion-col size="6" no-padding>
+            <div class="subtitle-color ion-text-start">
+              Amount in {{toCurrency.CurrencyCode}}
+            </div>
+          </ion-col>
+          <ion-col size="6" no-padding>
+            <div class="title-color" style="font-weight: bold">
+              {{toAmount}}
+            </div>
+          </ion-col>
+        </ion-row>
+        <form [formGroup]="paymentForm">
+          <mat-form-field style="min-width: 100%">
+            <mat-select formControlName="purpose" name="purpose" placeholder="Select Purpose">
+              <mat-option *ngFor="let purpose of purposeList" [value]="purpose">
+                {{purpose.Description}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field style="min-width: 100%">
+            <mat-select formControlName="source" name="source" placeholder="Source of Funds">
+              <mat-option *ngFor="let source of sourceOfFundsList" [value]="source">
+                {{source.Description}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </form>
+
+        <ion-row no-padding style="align-items: center; text-align: end">
+          <ion-col size="6" no-padding>
+            <div class="subtitle-color ion-text-start">
+              Conversion Rate (for 1 KWD)
+            </div>
+          </ion-col>
+          <ion-col size="6" no-padding>
+            <div class="title-color" style="font-weight: bold">
+              {{conversionRate}}
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer style="background: var(--ion-color-primary)">
+  <ion-button expand="full" style="--box-shadow: 0" (click)="didClickProceed()" [disabled]="nextDisabled">
+    CALCULATE
+  </ion-button>
+</ion-footer>

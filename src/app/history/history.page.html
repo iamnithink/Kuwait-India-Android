@@ -1,0 +1,69 @@
+<ion-header no-border>
+  <ion-toolbar [class.show-background]="showToolbar" style="padding: 8px 0 8px 0">
+    <ion-buttons slot="start">
+      <ion-back-button text="" [color]="currentColor"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end" *ngIf="transactions && transactions.length !== 0">
+      <ion-button (click)="toggleSearch()">
+        <ion-icon slot="icon-only" name="ios-search" [color]="currentColor"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen (ionScroll)="onScroll($event)" [scrollEvents]="true">
+
+  <div class="container">
+    <div class="header" style="height: 15vh; max-height: 15vh;">
+      <h1 class="big-title" style="color: white">Transactions</h1>
+    </div>
+    <div class="content" style="padding: 8px">
+      <ion-searchbar *ngIf="searchEnabled" [(ngModel)]="searchTerm" [showCancelButton]="true" (ionChange)="search()"
+        (ionCancel)="toggleSearch()"></ion-searchbar>
+      <div style="text-align: center">
+        <ion-spinner *ngIf="!transactions"></ion-spinner>
+      </div>
+      <div class="no-data" *ngIf="transactions && transactions.length === 0">
+        No previous transactions!
+      </div>
+      <ion-list *ngIf="transactions && transactions.length !== 0">
+        <ion-item *ngFor="let transaction of transactions" (click)="gotoDetails(transaction)">
+          <ion-grid no-padding>
+            <ion-row no-padding>
+              <ion-col size="8" no-padding>
+                <ion-item lines='none' no-padding style="--inner-padding-end: 0; max-width: 100%;">
+                  <ion-avatar slot="start">
+                    <div class="avatar" [ngStyle]="{'background': transaction.BenefColor}">
+                      {{transaction.BeneficiaryName | slice:0:1}}
+                    </div>
+                  </ion-avatar>
+                  <ion-label>
+                    <h3 class="title-color">
+                      {{transaction.BeneficiaryName}}
+                    </h3>
+                    <ion-label color="primary" style="white-space: normal; font-size: small">{{transaction.BankName}}
+                    </ion-label>
+                    <h3 class="subtitle-color">{{transaction.AccNo | creditCard}}</h3>
+                    <h3 class="subtitle-color">
+                      {{transaction.BankBranch}}
+                    </h3>
+                  </ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col size="4" no-padding style="text-align: end; padding: 8px 0 0 0">
+                <ion-chip color="success" *ngIf="transaction.Status === 'COMPLETED'">
+                  <div class="menu-text">{{transaction.Status}}</div>
+                </ion-chip>
+                <ion-chip color="warning" *ngIf="transaction.Status !== 'COMPLETED'">
+                  <div class="menu-text">{{transaction.Status}}</div>
+                </ion-chip>
+              </ion-col>
+            </ion-row>
+            <app-transaction [firstAmount]="transaction.TotalKD" [secondAmount]="transaction.AmountFC" firstUnit="KWD"
+              [secondUnit]="transaction.Currency"></app-transaction>
+          </ion-grid>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+</ion-content>

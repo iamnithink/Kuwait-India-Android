@@ -1,0 +1,22 @@
+:host {
+    ion-content {
+      --background: linear-gradient(#0073d6, #00c0ff);
+    }
+
+    .locate-btn {
+      --color: var(--ion-color-primary); 
+      padding: 0 3em; 
+      --background: var(--ion-color-light)
+    }
+
+    .success {
+      height: 40vh;
+      max-height: 40vh;
+      margin: 10% 0 5vh 0;
+    }
+
+    .tnc-btn {
+      --color: var(--ion-color-light); 
+      padding: 0 3em
+    }
+}

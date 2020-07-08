@@ -1,0 +1,26 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="" color="light"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <div class="container">
+    <div class="header" style="height: 20vh; max-height: 20vh">
+      <h1 class="big-title" style="color: white; margin-bottom: 16px">
+        Security Question
+      </h1>
+    </div>
+    <div class="content">
+      <ion-label>{{question}}</ion-label>
+      <ion-item style="--padding-start: 0px">
+        <ion-input placeholder="Answer" [(ngModel)]="answer"></ion-input>
+      </ion-item>
+      <ion-button class="login-btn" expand="block" size="large" (click)="gotoPassword()">
+        NEXT
+      </ion-button>
+    </div>
+  </div>
+</ion-content>
